@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="start">START</string>
+    <string name="exit">EXIT</string>
+    <string name="developed_by">Developed By: Pragati Kumari</string>
+</resources>
