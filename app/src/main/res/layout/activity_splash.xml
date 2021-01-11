@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Created main layout-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +9,7 @@
     tools:context=".Activity.SplashActivity"
     android:background="@color/colorPrimary">
 
+    <!--View for logo on the Splash Screen-->
     <ImageView
         android:layout_width="205dp"
         android:layout_height="182dp"
@@ -15,15 +17,17 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/logo_tic_tac_toe" />
 
+    <!--View for text at the bottom-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="27dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="cursive"
         android:text="@string/developed_by"
+        android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:textColor="@color/colorText"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textSize="20sp" />
 
 </RelativeLayout>

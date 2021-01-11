@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Created main layout-->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,6 +9,7 @@
     android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
+    <!--Created Toolbar-->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
@@ -17,6 +19,7 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
 
+    <!--Created Restart Button-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,6 +33,8 @@
         android:elevation="4dp"
         android:textColor="@color/colorText"
         android:background="@drawable/button"/>
+
+<!--Created Layout for Player 1 on Top Bezel-->
 <RelativeLayout
     android:id="@+id/ll_Player1"
     android:layout_width="wrap_content"
@@ -69,6 +74,8 @@
         android:textColor="@color/colorTextGray"
         android:textStyle="bold"/>
 </RelativeLayout>
+
+    <!--Created Layout for Player 2 on Top Bezel-->
 <RelativeLayout
     android:id="@+id/ll_Player2"
     android:layout_width="wrap_content"
@@ -110,6 +117,7 @@
         android:textStyle="bold"/>
     </RelativeLayout>
 
+<!--Created Game Area-->
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="350dp"
@@ -222,6 +230,7 @@
             android:tag="8" />
     </GridLayout>
 
+<!--Created Layout for Enter Details of Players-->
     <LinearLayout
         android:id="@+id/details"
         android:layout_width="300dp"
@@ -240,8 +249,8 @@
             android:layout_margin="8dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:inputType="text"
-            android:maxLength="12"
+            android:inputType="textCapWords"
+            android:maxLength="10"
             android:hint="Enter Player 1 Name"/>
 
         <EditText
@@ -252,8 +261,8 @@
             android:layout_margin="8dp"
             android:gravity="center"
             android:padding="14dp"
-            android:inputType="text"
-            android:maxLength="12"
+            android:inputType="textCapWords"
+            android:maxLength="10"
             android:hint="Enter Player 2 Name"/>
 
         <Button
@@ -270,6 +279,7 @@
 
     </LinearLayout>
 
+<!--Created Layout for Declaring Winner with a Play Again and Exit button-->
     <RelativeLayout
         android:id="@+id/winner"
         android:layout_width="220dp"
@@ -284,7 +294,7 @@
             android:id="@+id/winner1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="30dp"
             android:layout_gravity="center"
             android:layout_centerHorizontal="true"
             android:gravity="center"
@@ -327,3 +337,4 @@
     </RelativeLayout>
 
 </RelativeLayout>
+<!--Closed Main Layout-->
