@@ -7,7 +7,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     var activePlayer = 1
     var gameIsActive = true
     var count = 0
-    var lapse = 0
+    var lapse =0
     var playerchance = 0
     var countBack = 0 //Variable declared for exiting not by once back
     //Variable declared for Changing Active and Inactive Player Background
@@ -43,6 +42,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var buttonExit:Button
     lateinit var layoutPlayer1:RelativeLayout
     lateinit var layoutPlayer2:RelativeLayout
+    lateinit var gridLayout: GridLayout
+    lateinit var start : LinearLayout
+    lateinit var layout : RelativeLayout
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,26 +52,23 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.my_toolbar))
         title=" Tic Tac Toe"
 
-        initialize(); //Calling initialize function
+        initialize() //Calling initialize function
 
         //Making the details dialog visible as the activity starts
-        val start = findViewById<LinearLayout>(R.id.details)
-        start.visibility =View.VISIBLE;
+        start.visibility =View.VISIBLE
 
-        val layout = findViewById<RelativeLayout>(R.id.winner)
         //Making Start Button Functional
         buttonStart.setOnClickListener(View.OnClickListener {
             //Giving Default Value to Player's Name Details
-            var name1: String = "Player O";
-            var name2: String = "Player X";
-
+            var name1: String = "Player O"
+            var name2: String = "Player X"
             //Parsing EditText input value to top Bezel if value is given otherwise parsing the default value
-            if(editPlayer1.getText().toString().trim() != "")
-                name1 = editPlayer1.getText().toString();
-            if(editPlayer2.getText().toString().trim() != "")
-                name2 = editPlayer2.getText().toString();
-            txtPlayer1.setText(name1);
-            txtPlayer2.setText(name2);
+            if(editPlayer1.text.toString().trim() != "")
+                name1 = editPlayer1.text.toString()
+            if(editPlayer2.text.toString().trim() != "")
+                name2 = editPlayer2.text.toString()
+            txtPlayer1.text = name1
+            txtPlayer2.text = name2
 
             //Setting the EditText Box Blank Again
             editPlayer1.setText("")
@@ -80,61 +79,66 @@ class MainActivity : AppCompatActivity() {
             //To hide the keyboard once input is taken and start button is pressed
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, 0)
-        });
+        })
 
         //Making Restart button functional
         buttonRestart.setOnClickListener(View.OnClickListener {
-            start.visibility =View.VISIBLE; //Making the details dialog visible when restart button is pressed
+            layout.visibility = View.INVISIBLE //Making the winner dialog invisible
+            start.visibility =View.VISIBLE //Making the details dialog visible when restart button is pressed
             backGroundPlayer() //Calling function
             restartGame(it) //Calling function
-        });
+        })
 
         //Making Exit Button functional
         buttonExit.setOnClickListener ( View.OnClickListener {
             //Activity is finished showing the toast when exit button is clicked
-                finish();
+                finish()
             Toast.makeText(this,"You Pressed Exit Game!", Toast.LENGTH_SHORT).show()
-        });
-        backGroundPlayer(); //Calling function
+        })
+        backGroundPlayer() //Calling function
     }
 
     //Declaring function to toggle background color as the game proceeds
     private fun backGroundPlayer() {
         //Giving the default color when game is not active
         if(!gameIsActive) {
-            layoutPlayer1.setBackgroundColor(colorInactive);
-            layoutPlayer2.setBackgroundColor(colorInactive);
+            layoutPlayer1.setBackgroundColor(colorInactive)
+            layoutPlayer2.setBackgroundColor(colorInactive)
         }
 
         else if (gameIsActive && lapse == 0)
         {
-            layoutPlayer1.setBackgroundColor(colorActive);
-            layoutPlayer2.setBackgroundColor(colorInactive);
+            layoutPlayer1.setBackgroundColor(colorActive)
+            layoutPlayer2.setBackgroundColor(colorInactive)
         }
         //Switching the background color according to the active player
         else{
             if(activePlayer == 1){
-                layoutPlayer1.setBackgroundColor(colorInactive);
-                layoutPlayer2.setBackgroundColor(colorActive);
+                layoutPlayer1.setBackgroundColor(colorInactive)
+                layoutPlayer2.setBackgroundColor(colorActive)
             }
             else if(activePlayer == 0) {
-                layoutPlayer1.setBackgroundColor(colorActive);
-                layoutPlayer2.setBackgroundColor(colorInactive);
+                layoutPlayer1.setBackgroundColor(colorActive)
+                layoutPlayer2.setBackgroundColor(colorInactive)
             }
         }
     }
 
     //Declaring function to initialize all the declared variable
     private fun initialize() {
-        txtPlayer1 = findViewById<TextView>(R.id.txt_details_o_name);
-        txtPlayer2 = findViewById<TextView>(R.id.txt_details_x_name);
-        editPlayer1 = findViewById(R.id.edtPlayer1);
-        editPlayer2 = findViewById(R.id.edtPlayer2);
-        buttonStart = findViewById(R.id.btnStart);
-        buttonRestart = findViewById(R.id.btnRestart);
+        txtPlayer1 = findViewById<TextView>(R.id.txt_details_o_name)
+        txtPlayer2 = findViewById<TextView>(R.id.txt_details_x_name)
+        editPlayer1 = findViewById(R.id.edtPlayer1)
+        editPlayer2 = findViewById(R.id.edtPlayer2)
+        buttonStart = findViewById(R.id.btnStart)
+        buttonRestart = findViewById(R.id.btnRestart)
         buttonExit = findViewById(R.id.btnExit)
         layoutPlayer1 = findViewById(R.id.ll_Player1)
         layoutPlayer2 = findViewById(R.id.ll_Player2)
+        gridLayout = findViewById(R.id.gridLayout)
+        start = findViewById<LinearLayout>(R.id.details)
+        layout = findViewById<RelativeLayout>(R.id.winner)
+        gridLayout = findViewById<GridLayout>(R.id.gridLayout)
     }
 
     //Declaring function to get the symbol for player according to the active player and declaring winner accordingly
@@ -142,13 +146,10 @@ class MainActivity : AppCompatActivity() {
         //variables declared
         val counter = view as ImageView
         val txt = findViewById<TextView>(R.id.winner1)
-        val layout = findViewById<RelativeLayout>(R.id.winner)
-        val start = findViewById<LinearLayout>(R.id.details)
-
         val tappedCounter = counter.tag.toString().toInt()
 
-        var name1 = txtPlayer1.getText()
-        var name2 = txtPlayer1.getText()
+        var name1 = txtPlayer1.text
+        var name2 = txtPlayer1.text
 
         //As the game becomes active making the details dialog invisible
         if(gameIsActive)
@@ -158,7 +159,7 @@ class MainActivity : AppCompatActivity() {
         lapse++
         //Proceeding the game while toggling the symbol according to the active player
         if (gameState[tappedCounter] == 2 && gameIsActive) {
-            backGroundPlayer(); //Calling function
+            backGroundPlayer() //Calling function
             playerchance=1
             //Setting the symbol to O when active player is 1
             if (activePlayer == 1) {
@@ -203,10 +204,6 @@ class MainActivity : AppCompatActivity() {
         gameIsActive = true
         count= 0
         lapse=0
-        val layout = findViewById<RelativeLayout>(R.id.winner)
-        val start:LinearLayout = findViewById(R.id.details)
-        val gridLayout =
-            findViewById<GridLayout>(R.id.gridLayout)
         //setting the board to new again
         for (i in gameState.indices) {
             gameState[i] = 2
@@ -227,8 +224,6 @@ class MainActivity : AppCompatActivity() {
         gameIsActive = true
         count= 0
         lapse=0
-        val gridLayout =
-            findViewById<GridLayout>(R.id.gridLayout)
         //setting the board to new again
         for (i in gameState.indices) {
             gameState[i] = 2
@@ -246,7 +241,7 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
             return
         }
-        countBack++;
+        countBack++
         Toast.makeText(this,"Press Again to Exit Game!", Toast.LENGTH_SHORT).show()
     }
 }

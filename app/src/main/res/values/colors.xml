@@ -7,6 +7,7 @@
     <color name="colorText">#ffffff</color>
     <color name="colorTextRed">#FF0000</color>
     <color name="colorTextGray">#EBFFFFFF</color>
+    <color name="colorTransparent">#0000ffff</color>
 
 
 </resources>
